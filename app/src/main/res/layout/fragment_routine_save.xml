@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="routineSaveViewModel"
+            type="com.example.lifetracker.routineSave.RoutineSaveViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.example.lifetracker.routineSave.RoutineSaveFragment">
+
+        <ImageView
+            android:id="@+id/logoImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="100dp"
+            app:layout_constraintBottom_toTopOf="@+id/nameAutoCompleteTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <AutoCompleteTextView
+            android:id="@+id/nameAutoCompleteTextView"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/startDateLabelTextView"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:textStyle="bold"
+            android:text="@string/start_date"
+            app:layout_constraintBottom_toTopOf="@+id/endDateLabelTextView"
+            app:layout_constraintEnd_toStartOf="@+id/startDateTextView"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/logoImageView"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/endDateLabelTextView"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:textStyle="bold"
+            android:text="@string/end_date"
+            app:layout_constraintBottom_toTopOf="@+id/nameAutoCompleteTextView"
+            app:layout_constraintEnd_toStartOf="@+id/endDateTextView"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/startDateLabelTextView" />
+
+        <TextView
+            android:id="@+id/startDateTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:minWidth="200dp"
+            android:gravity="center_vertical"
+            android:text="@{routineSaveViewModel.startTime}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/startDateLabelTextView"
+            app:layout_constraintTop_toTopOf="@+id/startDateLabelTextView"/>
+
+        <TextView
+            android:id="@+id/endDateTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:minWidth="200dp"
+            android:gravity="center_vertical"
+            android:text="@{routineSaveViewModel.endTime}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/endDateLabelTextView"
+            app:layout_constraintTop_toTopOf="@+id/endDateLabelTextView" />
+
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/save"
+            android:onClick="@{() -> routineSaveViewModel.saveRoutine()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nameAutoCompleteTextView" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Value is new"
+            app:layout_constraintEnd_toEndOf="@+id/nameAutoCompleteTextView"
+            app:layout_constraintStart_toStartOf="@+id/nameAutoCompleteTextView"
+            app:layout_constraintTop_toBottomOf="@+id/nameAutoCompleteTextView"
+            android:visibility="@{routineSaveViewModel.isActivityNew ? View.VISIBLE : View.INVISIBLE}"/>
+
+        <Button
+            android:id="@+id/showListButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:text="v"
+            app:layout_constraintStart_toEndOf="@+id/nameAutoCompleteTextView"
+            app:layout_constraintTop_toTopOf="@+id/nameAutoCompleteTextView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+
