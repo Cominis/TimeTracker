@@ -90,8 +90,7 @@ class RoutineSaveFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        ViewModelProvider(requireActivity())
-            .get(MainActivityViewModel::class.java)
+        ViewModelProvider(requireActivity()).get(MainActivityViewModel::class.java)
             .updateActionBarTitle(resources.getString(R.string.save_routine))
     }
 }

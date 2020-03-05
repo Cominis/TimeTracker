@@ -35,6 +35,7 @@
             android:layout_height="wrap_content"
             android:textSize="48sp"
             android:textStyle="bold"
+            android:format="00:00:00"
             app:layout_constraintBottom_toTopOf="@+id/message"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

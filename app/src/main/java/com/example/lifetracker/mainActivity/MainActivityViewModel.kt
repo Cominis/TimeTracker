@@ -10,5 +10,11 @@ class MainActivityViewModel() : ViewModel() {
         val title: LiveData<String>
                 get() = _title
         fun updateActionBarTitle(title: String) = _title.postValue(title)
+
+        private val _updateStatistics = MutableLiveData<Boolean>()
+        val updateStatistics: LiveData<Boolean>
+                get() = _updateStatistics
+
+        fun toUpdateStatistics(toUpdate: Boolean) = _updateStatistics.postValue(toUpdate)
 }
 

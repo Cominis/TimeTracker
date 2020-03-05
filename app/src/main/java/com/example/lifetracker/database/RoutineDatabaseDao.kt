@@ -5,6 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
+import java.util.*
 
 @Dao
 interface RoutineDatabaseDao {
@@ -53,5 +54,8 @@ interface RoutineDatabaseDao {
     @Query("SELECT * FROM routine_table ORDER BY id DESC LIMIT 1")
     fun getLatestRoutine(): Routine?
 
+
+    @Query("SELECT start_time_milli, end_time_milli, name, image_name FROM activity_table LEFT JOIN routine_table  ON activity_table.id = routine_table.activity_id WHERE start_time_milli BETWEEN :fromDate AND :toDate")
+    fun getStatisticsData(fromDate : Date, toDate: Date): List<StatisticsData>
 
 }

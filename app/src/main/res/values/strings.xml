@@ -32,10 +32,37 @@
     <string name="over_all_statistics">Current Statistics</string>
     <string name="custom_statistics">Custom Statistics</string>
 
+    <!--filtering preferences-->
+    <string name="category_date_interval_key" translatable="false">dateInterval</string>
+    <string name="category_date_interval_title">Date Interval</string>
 
+    <string name="date_picker_from_key" translatable="false">datePickerFrom</string>
+    <string name="date_picker_from_title">From:</string>
+    <string name="date_picker_from_summary">2020–02–02</string>
 
+    <string name="date_picker_to_key" translatable="false">datePickerTo</string>
+    <string name="date_picker_to_title">To:</string>
+    <string name="date_picker_to_summary">2020–02–02</string>
 
+    <string name="category_weekdays_key" translatable="false">weekdaysSelection</string>
+    <string name="category_weekdays_title">Weekdays</string>
 
+    <string name="weekdays_key" translatable="false">weekdays</string>
+    <string name="weekdays_title">Weekdays</string>
+    <string name="weekdays_dialog_title">Select Weekdays</string>
+    <string name="weekdays_summary">Weekdays to be included</string>
+
+    <string name="category_time_interval_key" translatable="false">timeInterval</string>
+    <string name="category_time_interval_title">Time Interval</string>
+
+    <string name="time_picker_from_key" translatable="false">timePickerFrom</string>
+    <string name="time_picker_from_title">From:</string>
+    <string name="time_picker_from_summary">00:00</string>
+
+    <string name="time_picker_to_key" translatable="false">timePickerTo</string>
+    <string name="time_picker_to_title">To:</string>
+    <string name="time_picker_to_summary">00:00</string>
+    <!--end filtering preferences-->
 
     <string name="viewGithub">View on GitHub</string>
     <string name="reportProblem">Problem Report</string>

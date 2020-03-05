@@ -18,9 +18,9 @@ android {
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [
-                        "room.schemaLocation":"$projectDir/schemas".toString(),
-                        "room.incremental":"true",
-                        "room.expandProjection":"true"]
+                        "room.schemaLocation"  : "$projectDir/schemas".toString(),
+                        "room.incremental"     : "true",
+                        "room.expandProjection": "true"]
             }
         }
 
@@ -56,6 +56,9 @@ dependencies {
 
     // Room and Lifecycle dependencies
     implementation "androidx.room:room-runtime:$version_room"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
     kapt "androidx.room:room-compiler:$version_room"
     implementation "androidx.lifecycle:lifecycle-extensions:$version_lifecycle_extensions"
 
@@ -83,4 +86,8 @@ dependencies {
 
     //material design
     implementation "com.google.android.material:material:$version_material_design"
+
+    //preferences
+    implementation "androidx.preference:preference-ktx:$preference_version"
+
 }

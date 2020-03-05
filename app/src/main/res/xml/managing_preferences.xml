@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        app:key="filtering"
+        app:title="Filtering">
+
+        <SwitchPreferenceCompat
+            app:key="notifications"
+            app:title="Enable message notifications"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:key="managing"
+        app:title="Managing">
+
+        <Preference
+            app:key="feedback"
+            app:title="Send feedback"
+            app:summary="Report technical issues or suggest new features"/>
+
+        <EditTextPreference
+            app:key="naming"
+            app:title="Naming Test"
+            app:useSimpleSummaryProvider="true"
+            app:dependency="notifications">
+        </EditTextPreference>
+    </PreferenceCategory>
+
+
+</PreferenceScreen>

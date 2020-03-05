@@ -32,10 +32,10 @@
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
-        android:id="@+id/settingsFragment"
-        android:name="com.example.lifetracker.settings.SettingsFragment"
-        android:label="SettingsFragment"
-        tools:layout="@layout/fragment_settings"/>
+        android:id="@+id/settingsOldFragment"
+        android:name="com.example.lifetracker.settingsOld.SettingsOldFragment"
+        android:label="SettingsOldFragment"
+        tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/statisticsSettingsFragment"
         android:name="com.example.lifetracker.statisticsSettings.StatisticsSettingsFragment"
@@ -58,5 +58,38 @@
     <fragment
         android:id="@+id/overAllStatisticsFragment"
         android:name="com.example.lifetracker.overAllStatistics.OverAllStatisticsFragment"
-        android:label="OverAllStatisticsFragment" />
+        android:label="OverAllStatisticsFragment"
+        tools:layout="@layout/fragment_statistics_view_pager"/>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.lifetracker.settings.SettingsFragment"
+        android:label="SettingsFragment">
+        <action
+            android:id="@+id/action_settingsFragment_to_filteringSettingsFragment"
+            app:destination="@id/filteringSettingsFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_managingSettingsFragment"
+            app:destination="@id/managingSettingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/managingSettingsFragment"
+        android:name="com.example.lifetracker.settings.ManagingSettingsFragment"
+        android:label="ManagingSettingsFragment" />
+    <fragment
+        android:id="@+id/filteringSettingsFragment"
+        android:name="com.example.lifetracker.settings.FilteringSettingsFragment"
+        android:label="FilteringSettingsFragment" >
+        <action
+            android:id="@+id/action_filteringSettingsFragment_to_timePreferenceDialogFragmentCompat"
+            app:destination="@id/timePreferenceDialogFragmentCompat" />
+    </fragment>
+    <dialog
+        android:id="@+id/timePreferenceDialogFragmentCompat"
+        android:name="com.example.lifetracker.settings.timePickerPreference.TimePreferenceDialogFragmentCompat"
+        tools:layout="@layout/pref_dialog_time">
+        <argument
+            android:name="key"
+            app:argType="string"
+            android:defaultValue="filteringTimePicker" />
+    </dialog>
 </navigation>

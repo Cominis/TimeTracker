@@ -12,3 +12,10 @@ fun convertLongToDateString(systemTime: Long = 88888888888L): Spanned {
     val string = dateFormat.format(Date(systemTime))
     return Html.fromHtml(string, Html.FROM_HTML_MODE_LEGACY)
 }
+
+fun convertLongToDateOnlyString(systemTime: Long): Spanned {
+    val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US)
+    dateFormat.timeZone = TimeZone.getTimeZone("UTC")
+    val string = dateFormat.format(Date(systemTime))
+    return Html.fromHtml(string, Html.FROM_HTML_MODE_LEGACY)
+}

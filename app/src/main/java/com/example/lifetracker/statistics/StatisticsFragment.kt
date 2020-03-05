@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.Typeface
+import android.icu.util.Calendar
 import android.net.Uri
 import android.os.Bundle
 import android.text.SpannableString
@@ -17,18 +18,16 @@ import android.widget.SeekBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
-import androidx.core.app.ActivityCompat.invalidateOptionsMenu
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.preference.PreferenceManager.getDefaultSharedPreferences
 import com.example.lifetracker.R
 import com.example.lifetracker.database.RoutineDatabase
 import com.example.lifetracker.databinding.FragmentStatisticsBinding
 import com.example.lifetracker.mainActivity.MainActivityViewModel
-import com.example.lifetracker.overAllStatistics.OverAllStatisticsViewModel
-import com.example.lifetracker.overAllStatistics.OverAllStatisticsViewModelFactory
-
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.Chart
 import com.github.mikephil.charting.charts.PieChart
@@ -43,6 +42,8 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.github.mikephil.charting.utils.MPPointF
 import com.google.android.material.snackbar.Snackbar
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class StatisticsFragment : Fragment(), SeekBar.OnSeekBarChangeListener,
@@ -66,6 +67,8 @@ OnChartValueSelectedListener {
         private const val PERMISSION_STORAGE = 0
     }
 
+    private lateinit var activityViewModel : MainActivityViewModel
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
@@ -78,11 +81,41 @@ OnChartValueSelectedListener {
         val application = requireNotNull(this.activity).application
         val dataSource = RoutineDatabase.getInstance(application).routineDatabaseDao
 
-        val viewModelFactory = StatisticsViewModelFactory(dataSource = dataSource)
+        val sharedPref = getDefaultSharedPreferences(context)
+
+        val viewModelFactory = StatisticsViewModelFactory(dataSource, sharedPref)
         val statisticsViewModel = ViewModelProvider(this, viewModelFactory)
             .get(StatisticsViewModel::class.java)
 
-        statisticsViewModel.routineId
+
+        activityViewModel = ViewModelProvider(requireActivity())
+            .get(MainActivityViewModel::class.java)
+
+        activityViewModel.updateActionBarTitle(resources.getString(R.string.custom_statistics))
+        activityViewModel.toUpdateStatistics(true)
+        activityViewModel.updateStatistics.observe(viewLifecycleOwner, Observer { toUpdate ->
+            if(toUpdate) {
+                val timeFrom = sharedPref.getInt(getString(R.string.time_picker_from_key), 42)  //todo
+                val timeTo = sharedPref.getInt(getString(R.string.time_picker_to_key), 42)
+                val dateFrom = sharedPref.getLong(getString(R.string.date_picker_from_key), 42)
+                val dateTo = sharedPref.getLong(getString(R.string.date_picker_to_key), 42)
+
+                val weekdays = sharedPref.getStringSet(getString(R.string.weekdays_key), null)?.toList()
+                    ?: listOf("1", "2", "3", "4", "5", "6", "7")
+
+                statisticsViewModel.updateDatabase(dateFrom, dateTo, timeFrom, timeTo, weekdays)
+                activityViewModel.toUpdateStatistics(false)
+            }
+        })
+
+        statisticsViewModel.data.observe(viewLifecycleOwner, Observer { statisticsData ->
+            Log.v("DAUMANTAS","""pasieleido metodas""")
+            if(statisticsData.isNotEmpty()){
+                statisticsData.forEachIndexed { index, s ->
+                    Log.v("DAUMANTAS","""gauti values: $index : ${s.name} : ${s.startTimeMilli}""")
+                }
+            }
+        })
 
 
         //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -216,7 +249,7 @@ OnChartValueSelectedListener {
             R.id.viewGithub -> {
                 val i = Intent(Intent.ACTION_VIEW)
                 i.data =
-                    Uri.parse("https://github.com/PhilJay/MPAndroidChart/blob/master/MPChartExample/src/com/xxmassdeveloper/mpchartexample/PieChartActivity.java")
+                    Uri.parse("https://github.com/PhilJay/MPAndroidChart")
                 startActivity(i)
             }
             R.id.actionToggleValues -> {

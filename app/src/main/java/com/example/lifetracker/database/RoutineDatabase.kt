@@ -4,8 +4,10 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 
 @Database(entities = [Routine::class, Activity::class], version = 2, exportSchema = false)
+@TypeConverters(Converters::class)
 abstract class RoutineDatabase : RoomDatabase() {
 
     abstract val routineDatabaseDao: RoutineDatabaseDao

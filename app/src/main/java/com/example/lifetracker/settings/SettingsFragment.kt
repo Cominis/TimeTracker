@@ -1,38 +1,36 @@
 package com.example.lifetracker.settings
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
+import android.util.Log
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.preference.Preference
+import androidx.preference.PreferenceFragmentCompat
+import androidx.preference.SwitchPreferenceCompat
 import com.example.lifetracker.R
-import com.example.lifetracker.database.RoutineDatabase
-import com.example.lifetracker.databinding.FragmentSettingsBinding
+import com.example.lifetracker.convertLongToDateString
 import com.example.lifetracker.mainActivity.MainActivityViewModel
 
+//                requireActivity().supportFragmentManager.beginTransaction()
+//                    .replace(R.id.nav_host_fragment, FilteringSettingsFragment())
+//                    .addToBackStack(null)
+//                    .commit()
 
-class SettingsFragment : Fragment() {
+class SettingsFragment : PreferenceFragmentCompat() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+        setPreferencesFromResource(R.xml.global_preferences, rootKey)
 
-        val binding: FragmentSettingsBinding = DataBindingUtil.inflate(
-                inflater, R.layout.fragment_settings, container, false)
+        findPreference<Preference>("managing")?.setOnPreferenceClickListener { preference ->
+            this.findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToManagingSettingsFragment())
+            true
+        }
 
-        //val arguments = SettingsFragmentArgs.fromBundle(requireArguments())
+        findPreference<Preference>("filtering")?.setOnPreferenceClickListener { preference ->
+            this.findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToFilteringSettingsFragment())
+            true
+        }
 
-        val application = requireNotNull(this.activity).application
-        val dataSource = RoutineDatabase.getInstance(application).routineDatabaseDao
-
-        val viewModelFactory = SettingsViewModelFactory(dataSource = dataSource)
-        val settingsViewModel = ViewModelProvider(this, viewModelFactory)
-            .get(SettingsViewModel::class.java)
-
-        settingsViewModel.routineId
-
-        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -42,4 +40,6 @@ class SettingsFragment : Fragment() {
             .get(MainActivityViewModel::class.java)
             .updateActionBarTitle(resources.getString(R.string.settings))
     }
+
+
 }

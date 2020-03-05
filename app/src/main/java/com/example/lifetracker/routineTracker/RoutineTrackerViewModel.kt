@@ -25,10 +25,6 @@ class RoutineTrackerViewModel(val database: RoutineDatabaseDao) : ViewModel() {
         _navigateToRoutineSave.value = null
     }
 
-    val isStartButton = Transformations.map(currentRoutine) {
-        it == null
-    }
-
     private var _showSnackbarEvent = MutableLiveData<Boolean>()
     val showSnackBarEvent: LiveData<Boolean>
         get() = _showSnackbarEvent
@@ -41,6 +37,10 @@ class RoutineTrackerViewModel(val database: RoutineDatabaseDao) : ViewModel() {
         initializeCurrentRoutine()
         _showSnackbarEvent.value = false
         //prepopulateDatabase()
+    }
+
+    val isStartButton = Transformations.map(currentRoutine) {
+        it == null
     }
 
     private fun prepopulateDatabase() {
@@ -62,6 +62,7 @@ class RoutineTrackerViewModel(val database: RoutineDatabaseDao) : ViewModel() {
         }
     }
 
+
     private suspend fun getLatestRoutineFromDatabase(): Routine? {
         return withContext(Dispatchers.IO) {
             var routine = database.getLatestRoutine()
@@ -72,7 +73,13 @@ class RoutineTrackerViewModel(val database: RoutineDatabaseDao) : ViewModel() {
         }
     }
 
+    fun getCurrentDuration() : Long {
+        currentRoutine.value?.let {
+            return System.currentTimeMillis() - it.startTimeMilli
+        }
 
+        return 0L
+    }
 
     private suspend fun updateRoutine(routine: Routine) {
         withContext(Dispatchers.IO) {
@@ -112,6 +119,7 @@ class RoutineTrackerViewModel(val database: RoutineDatabaseDao) : ViewModel() {
             _navigateToRoutineSave.value = oldRoutine
         }
     }
+
 
     override fun onCleared() {
         super.onCleared()
