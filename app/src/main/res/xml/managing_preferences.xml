@@ -1,31 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
-        app:key="filtering"
-        app:title="Filtering">
+        app:key="@string/category_theme_key"
+        app:title="@string/category_theme_title">
 
         <SwitchPreferenceCompat
-            app:key="notifications"
-            app:title="Enable message notifications"/>
+            app:key="@string/dark_theme_key"
+            app:title="@string/dark_theme_title"
+            app:summary="@string/dark_theme_summary"/>
     </PreferenceCategory>
 
     <PreferenceCategory
-        app:key="managing"
-        app:title="Managing">
+        app:key="@string/category_delete_key"
+        app:title="@string/category_delete_title">
 
         <Preference
-            app:key="feedback"
-            app:title="Send feedback"
-            app:summary="Report technical issues or suggest new features"/>
+            app:key="@string/delete_current_key"
+            app:title="@string/delete_current_title"
+            app:summary="@string/delete_current_summary"/>
 
-        <EditTextPreference
-            app:key="naming"
-            app:title="Naming Test"
-            app:useSimpleSummaryProvider="true"
-            app:dependency="notifications">
-        </EditTextPreference>
+        <Preference
+            app:key="@string/delete_all_key"
+            app:title="@string/delete_all_title"
+            app:summary="@string/delete_all_summary"/>
     </PreferenceCategory>
 
 

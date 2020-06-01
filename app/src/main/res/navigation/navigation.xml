@@ -1,95 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!-- Note that the animations may show red in Android Studio;
-     however, they are present and working perfectly fine. -->
-
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/navigation"
     app:startDestination="@id/routineTrackerFragment">
     <fragment
         android:id="@+id/routineTrackerFragment"
-        android:name="com.example.lifetracker.routineTracker.RoutineTrackerFragment"
+        android:name="com.dmt.timetracker.ui.RoutineTrackerFragment"
         android:label="fragment_routine_tracker"
         tools:layout="@layout/fragment_routine_tracker">
         <action
-            android:id="@+id/action_routineTrackerFragment_to_routineSaveFragment"
+            android:id="@+id/actionRoutineTrackerFragmentToRoutineSaveFragment"
             app:destination="@id/routineSaveFragment" />
     </fragment>
     <fragment
         android:id="@+id/routineSaveFragment"
-        android:name="com.example.lifetracker.routineSave.RoutineSaveFragment"
+        android:name="com.dmt.timetracker.ui.RoutineSaveFragment"
         android:label="RoutineSaveFragment"
         tools:layout="@layout/fragment_routine_save">
         <argument
             android:name="RoutineId"
             app:argType="long" />
         <action
-            android:id="@+id/action_routineSaveFragment_to_routineTrackerFragment"
+            android:id="@+id/actionRoutineSaveFragmentToRoutineTrackerFragment"
             app:destination="@id/routineTrackerFragment"
             app:popUpTo="@id/routineTrackerFragment"
             app:popUpToInclusive="true" />
-    </fragment>
-    <fragment
-        android:id="@+id/settingsOldFragment"
-        android:name="com.example.lifetracker.settingsOld.SettingsOldFragment"
-        android:label="SettingsOldFragment"
-        tools:layout="@layout/fragment_settings" />
-    <fragment
-        android:id="@+id/statisticsSettingsFragment"
-        android:name="com.example.lifetracker.statisticsSettings.StatisticsSettingsFragment"
-        android:label="StatisticsSettingsFragment"
-        tools:layout="@layout/fragment_statistics_settings">
         <action
-            android:id="@+id/action_statisticsSettingsFragment_to_statisticsFragment"
-            app:destination="@id/statisticsFragment"
-            app:popUpTo="@id/routineTrackerFragment" />
-        <action
-            android:id="@+id/action_statisticsSettingsFragment_to_overAllStatisticsFragment"
-            app:destination="@id/overAllStatisticsFragment"
-            app:popUpTo="@id/routineTrackerFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/statisticsFragment"
-        android:name="com.example.lifetracker.statistics.StatisticsFragment"
-        android:label="StatisticsFragment"
-        tools:layout="@layout/fragment_statistics"/>
-    <fragment
-        android:id="@+id/overAllStatisticsFragment"
-        android:name="com.example.lifetracker.overAllStatistics.OverAllStatisticsFragment"
-        android:label="OverAllStatisticsFragment"
-        tools:layout="@layout/fragment_statistics_view_pager"/>
-    <fragment
-        android:id="@+id/settingsFragment"
-        android:name="com.example.lifetracker.settings.SettingsFragment"
-        android:label="SettingsFragment">
-        <action
-            android:id="@+id/action_settingsFragment_to_filteringSettingsFragment"
-            app:destination="@id/filteringSettingsFragment" />
-        <action
-            android:id="@+id/action_settingsFragment_to_managingSettingsFragment"
+            android:id="@+id/actionRoutineSaveFragmentToManagingSettingsFragment"
             app:destination="@id/managingSettingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/managingSettingsFragment"
-        android:name="com.example.lifetracker.settings.ManagingSettingsFragment"
+        android:name="com.dmt.timetracker.ui.ManagingSettingsFragment"
         android:label="ManagingSettingsFragment" />
     <fragment
         android:id="@+id/filteringSettingsFragment"
-        android:name="com.example.lifetracker.settings.FilteringSettingsFragment"
-        android:label="FilteringSettingsFragment" >
+        android:name="com.dmt.timetracker.ui.FilteringSettingsFragment"
+        android:label="FilteringSettingsFragment" />
+    <fragment
+        android:id="@+id/statisticsPagerFragment"
+        android:name="com.dmt.timetracker.ui.StatisticsPagerFragment"
+        android:label="StatisticsPagerFragment"
+        tools:layout="@layout/fragment_statistics_view_pager">
         <action
-            android:id="@+id/action_filteringSettingsFragment_to_timePreferenceDialogFragmentCompat"
-            app:destination="@id/timePreferenceDialogFragmentCompat" />
+            android:id="@+id/actionStatisticsPagerFragmentToPredefinedStatisticsFragment"
+            app:destination="@id/predefinedStatisticsFragment" />
+        <action
+            android:id="@+id/actionStatisticsPagerFragmentToCustomStatisticsFragment"
+            app:destination="@id/customStatisticsFragment" />
+        <action
+            android:id="@+id/actionStatisticsPagerFragmentToFilteringSettingsFragment"
+            app:destination="@id/filteringSettingsFragment" />
     </fragment>
-    <dialog
-        android:id="@+id/timePreferenceDialogFragmentCompat"
-        android:name="com.example.lifetracker.settings.timePickerPreference.TimePreferenceDialogFragmentCompat"
-        tools:layout="@layout/pref_dialog_time">
+    <fragment
+        android:id="@+id/predefinedStatisticsFragment"
+        android:name="com.dmt.timetracker.ui.PredefinedStatisticsFragment"
+        android:label="PredefinedStatisticsFragment" >
         <argument
-            android:name="key"
-            app:argType="string"
-            android:defaultValue="filteringTimePicker" />
-    </dialog>
+            android:name="timestampFrom"
+            app:argType="long" />
+        <argument
+            android:name="timestampTo"
+            app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/customStatisticsFragment"
+        android:name="com.dmt.timetracker.ui.CustomStatisticsFragment"
+        android:label="CustomStatisticsFragment" />
 </navigation>
+
+    <!-- Note that the animations may show red in Android Studio;
+         however, they are present and working perfectly fine. -->

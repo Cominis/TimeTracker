@@ -19,4 +19,12 @@
         <item>6</item>
         <item>7</item>
     </string-array>
+
+    <string-array name="statisticsPageTitles">
+        <item>@string/today</item>
+        <item>@string/week</item>
+        <item>@string/month</item>
+        <item>@string/year</item>
+        <item>@string/custom</item>
+    </string-array>
 </resources>

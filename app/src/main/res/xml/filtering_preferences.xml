@@ -3,19 +3,18 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
-        app:key="@string/category_date_interval_key"
-        app:title="@string/category_date_interval_title">
-
-        <com.example.lifetracker.settings.datePickerPreference.DatePreference
-            android:key="@string/date_picker_from_key"
-            android:title="@string/date_picker_from_title"
-            app:summary="@string/date_picker_from_summary"/>
-
-        <com.example.lifetracker.settings.datePickerPreference.DatePreference
-            android:key="@string/date_picker_to_key"
-            android:title="@string/date_picker_to_title"
-            app:summary="@string/date_picker_to_summary"/>
-
+        app:key="@string/category_datetime_interval_key"
+        app:title="@string/category_datetime_interval_title">
+        <Preference
+            android:key="@string/datetime_picker_from_key"
+            android:title="@string/datetime_picker_from_title"
+            app:summary="@string/datetime_picker_from_summary"
+            app:useSimpleSummaryProvider="true"/>
+        <Preference
+            android:key="@string/datetime_picker_until_key"
+            android:title="@string/datetime_picker_until_title"
+            app:summary="@string/datetime_picker_until_summary"
+            app:useSimpleSummaryProvider="true"/>
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -26,25 +25,10 @@
             app:title="@string/weekdays_title"
             app:summary="@string/weekdays_summary"
             app:dialogTitle="@string/weekdays_dialog_title"
+            app:enabled="false"
             app:entries="@array/weekdaysEntries"
             app:entryValues="@array/weekdaysEntriesValues"
             app:defaultValue="@array/weekdaysEntriesValues" />
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        app:key="@string/category_time_interval_key"
-        app:title="@string/category_time_interval_title">
-
-        <com.example.lifetracker.settings.timePickerPreference.TimePreference
-            android:key="@string/time_picker_from_key"
-            android:title="@string/time_picker_from_title"
-            app:summary="@string/time_picker_from_summary"/>
-
-        <com.example.lifetracker.settings.timePickerPreference.TimePreference
-            android:key="@string/time_picker_to_key"
-            android:title="@string/time_picker_to_title"
-            app:summary="@string/time_picker_to_summary"/>
-
     </PreferenceCategory>
 
 </PreferenceScreen>

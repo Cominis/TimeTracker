@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/actionToggleValues"
+        android:title="@string/actionToggleYValues"
+        android:checkable="true"
+        android:checked="true">
+    </item>
+    <item
+        android:id="@+id/actionToggleXValues"
+        android:title="@string/actionToggleXValues"
+        android:checkable="true"
+        android:checked="true">
+    </item>
+    <item
+        android:id="@+id/actionToggleIcons"
+        android:title="@string/actionToggleIcons"
+        android:checkable="true"
+        android:checked="false">
+    </item>
+    <item
+        android:id="@+id/actionToggleCurvedSlices"
+        android:title="@string/actionToggleCurvedSlices"
+        android:checkable="true"
+        android:checked="false">
+    </item>
+    <item
+        android:id="@+id/actionSave"
+        android:title="@string/actionSave">
+    </item>
+    <item
+        android:id="@+id/actionToggleMinAngles"
+        android:title="@string/actionToggleMinAngles"
+        android:checkable="true"
+        android:checked="true">
+    </item>
+</menu>

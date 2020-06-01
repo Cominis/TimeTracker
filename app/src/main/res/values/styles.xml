@@ -1,36 +1,34 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
 
-        <item name="alertDialogTheme">@style/AppAlertDialog</item>
+
+    <style name="datePickerStyle">
+        <item name="android:datePickerMode">spinner</item>
     </style>
 
-    <style name="AppAlertDialog"
-        parent="Theme.AppCompat.DayNight.Dialog.Alert">
-        <item name="colorAccent">@color/colorAccent</item>
+    <style name="timePickerStyle">
+        <item name="android:timePickerMode">spinner</item>
+    </style>
+    <!--Components-->
+
+    <!--Bottom Sheets-->
+    <style name="ThemeOverlay.MyTheme.BottomSheetDialog" parent="ThemeOverlay.MaterialComponents.Dialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowAnimationStyle">@style/Animation.MyTheme.BottomSheet.Modal</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="bottomSheetStyle">@style/Widget.MyTheme.BottomSheet.Modal</item>
+        <item name="android:navigationBarColor">?attr/colorSurface</item>
+        <item name="android:navigationBarDividerColor" tools:ignore="NewApi">@android:color/transparent</item>
+    </style>
+    <style name="Widget.MyTheme.BottomSheet.Modal" parent="Widget.MaterialComponents.BottomSheet.Modal">
+        <item name="shapeAppearanceOverlay">?attr/shapeAppearanceLargeComponent</item>
     </style>
 
-    <style name="AppAlertDialogContent"
-        parent="Theme.AppCompat.DayNight">
-        <!-- To keep the color of EditText -->
-        <item name="colorAccent">@color/colorAccent</item>
+    <!--Navigation Drawer-->
+    <style name="Widget.MyTheme.NavigationView" parent="Widget.MaterialComponents.NavigationView">
+        <item name="itemTextAppearance">?attr/textAppearanceBody2</item>
     </style>
-
-<!--    &lt;!&ndash; Style for an Preference Entry &ndash;&gt;-->
-<!--    <style name="AppPreference">-->
-<!--        <item name="android:layout">@layout/preference_material</item>-->
-<!--    </style>-->
-
-<!--    &lt;!&ndash; Style for a DialogPreference Entry &ndash;&gt;-->
-<!--    <style name="AppPreference.DialogPreference">-->
-<!--        <item name="positiveButtonText">@android:string/ok</item>-->
-<!--        <item name="negativeButtonText">@android:string/cancel</item>-->
-<!--    </style>-->
 
 </resources>

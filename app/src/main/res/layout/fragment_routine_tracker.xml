@@ -6,14 +6,14 @@
     <data>
         <variable
             name="routineTrackerViewModel"
-            type="com.example.lifetracker.routineTracker.RoutineTrackerViewModel" />
+            type="com.dmt.timetracker.viewmodels.RoutineTrackerViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.example.lifetracker.routineTracker.RoutineTrackerFragment"
+        tools:context="com.dmt.timetracker.ui.RoutineTrackerFragment"
         android:clickable="true"
         android:onClick="@{() -> routineTrackerViewModel.onTracking()}">
 
@@ -21,9 +21,10 @@
             android:id="@+id/message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{routineTrackerViewModel.isStartButton ? @string/start_tracking : @string/end_tracking}"
-            android:textSize="28sp"
+            android:text="@{routineTrackerViewModel.isStart ? @string/start_tracking : @string/end_tracking}"
             android:textStyle="bold"
+            android:textAllCaps="true"
+            android:textAppearance="?textAppearanceHeadline1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

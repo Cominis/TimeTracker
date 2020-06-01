@@ -7,115 +7,158 @@
         <import type="android.view.View"/>
         <variable
             name="routineSaveViewModel"
-            type="com.example.lifetracker.routineSave.RoutineSaveViewModel" />
+            type="com.dmt.timetracker.viewmodels.RoutineSaveViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.example.lifetracker.routineSave.RoutineSaveFragment">
+        tools:context="com.dmt.timetracker.ui.RoutineSaveFragment">
 
         <ImageView
             android:id="@+id/logoImageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="100dp"
-            app:layout_constraintBottom_toTopOf="@+id/nameAutoCompleteTextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
-
-        <AutoCompleteTextView
-            android:id="@+id/nameAutoCompleteTextView"
-            android:layout_width="200dp"
-            android:layout_height="50dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/startDateLabelTextView"
             android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:gravity="center_vertical"
-            android:textStyle="bold"
-            android:text="@string/start_date"
-            app:layout_constraintBottom_toTopOf="@+id/endDateLabelTextView"
-            app:layout_constraintEnd_toStartOf="@+id/startDateTextView"
+            android:layout_height="100dp"
+            android:padding="20dp"
+            android:tint="?colorPrimary"
+            android:tintMode="src_in"
+            android:background="@drawable/circle_ripple"
+            android:backgroundTint="?colorOnSurface"
+            app:layout_constraintBottom_toTopOf="@+id/saveButton"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/logoImageView"
-            app:layout_constraintVertical_chainStyle="packed" />
+            app:layout_constraintTop_toBottomOf="@+id/name_text_input" />
 
+        <ImageButton
+            android:id="@+id/showListButton"
+            android:layout_width="40dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="244dp"
+            android:background="@drawable/top_right_round_square_ripple"
+            android:backgroundTint="?colorPrimary"
+            app:layout_constraintStart_toStartOf="@+id/name_text_input"
+            app:layout_constraintTop_toTopOf="@+id/name_text_input"
+            app:srcCompat="@drawable/baseline_arrow_drop_down_24" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/startDateLinearLayout"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/rounded_square"
+            android:backgroundTint="?colorOnSurface"
+            android:padding="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/name_text_input"
+            app:layout_constraintEnd_toStartOf="@+id/endDateLinearLayout"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <TextView
+                android:id="@+id/startDateLabelTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/start_date"
+                android:textAllCaps="true"
+                android:textAppearance="?textAppearanceHeadline5"
+                android:textColor="?colorPrimary"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/startDateTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="@{routineSaveViewModel.startTime}"
+                android:textAppearance="?textAppearanceBody2"
+                app:layout_constraintEnd_toEndOf="@+id/startDateLabelTextView"
+                app:layout_constraintStart_toStartOf="@+id/startDateLabelTextView"
+                app:layout_constraintTop_toBottomOf="@+id/startDateLabelTextView" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/endDateLinearLayout"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/rounded_square"
+            android:backgroundTint="?colorOnSurface"
+            android:padding="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/startDateLinearLayout"
+            app:layout_constraintTop_toTopOf="@+id/startDateLinearLayout">
         <TextView
             android:id="@+id/endDateLabelTextView"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:gravity="center_vertical"
-            android:textStyle="bold"
-            android:text="@string/end_date"
-            app:layout_constraintBottom_toTopOf="@+id/nameAutoCompleteTextView"
-            app:layout_constraintEnd_toStartOf="@+id/endDateTextView"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/startDateLabelTextView" />
-
-        <TextView
-            android:id="@+id/startDateTextView"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:minWidth="200dp"
-            android:gravity="center_vertical"
-            android:text="@{routineSaveViewModel.startTime}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/startDateLabelTextView"
-            app:layout_constraintTop_toTopOf="@+id/startDateLabelTextView"/>
-
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/end_date"
+            android:textAllCaps="true"
+            android:textAppearance="?textAppearanceHeadline5"
+            android:textColor="?colorPrimary"
+            android:textStyle="bold" />
         <TextView
             android:id="@+id/endDateTextView"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:minWidth="200dp"
-            android:gravity="center_vertical"
+            android:layout_height="40dp"
+            android:gravity="center"
             android:text="@{routineSaveViewModel.endTime}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/endDateLabelTextView"
-            app:layout_constraintTop_toTopOf="@+id/endDateLabelTextView" />
+            android:textAppearance="?textAppearanceBody2"
+            app:layout_constraintEnd_toEndOf="@+id/endDateLabelTextView"
+            app:layout_constraintStart_toStartOf="@+id/endDateLabelTextView"
+            app:layout_constraintTop_toBottomOf="@+id/endDateLabelTextView" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
         <Button
             android:id="@+id/saveButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/save"
+            android:layout_marginBottom="100dp"
+            android:enabled="@{routineSaveViewModel.saveEnabled}"
             android:onClick="@{() -> routineSaveViewModel.saveRoutine()}"
+            android:text="@string/save"
+            android:visibility="@{routineSaveViewModel.saveEnabled ? View.VISIBLE : View.INVISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nameAutoCompleteTextView" />
+            app:layout_constraintTop_toBottomOf="@+id/logoImageView" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Value is new"
-            app:layout_constraintEnd_toEndOf="@+id/nameAutoCompleteTextView"
-            app:layout_constraintStart_toStartOf="@+id/nameAutoCompleteTextView"
-            app:layout_constraintTop_toBottomOf="@+id/nameAutoCompleteTextView"
-            android:visibility="@{routineSaveViewModel.isActivityNew ? View.VISIBLE : View.INVISIBLE}"/>
+            android:text="@string/newValue"
+            android:textColor="?attr/colorError"
+            android:visibility="@{routineSaveViewModel.isNewEntry ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintEnd_toEndOf="@+id/showListButton"
+            app:layout_constraintStart_toStartOf="@+id/name_text_input"
+            app:layout_constraintTop_toBottomOf="@+id/name_text_input" />
 
-        <Button
-            android:id="@+id/showListButton"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:text="v"
-            app:layout_constraintStart_toEndOf="@+id/nameAutoCompleteTextView"
-            app:layout_constraintTop_toTopOf="@+id/nameAutoCompleteTextView" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/name_text_input"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+            android:layout_width="248dp"
+            android:layout_height="80dp"
+            android:layout_marginEnd="36dp"
+            android:hint="@string/set_activity"
+            app:counterEnabled="true"
+            app:endIconMode="clear_text"
+            app:layout_constraintBottom_toTopOf="@+id/logoImageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/startDateLinearLayout">
+
+            <AutoCompleteTextView
+                android:id="@+id/nameAutoCompleteTextView"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:background="@null"
+                android:singleLine="true" />
+        </com.google.android.material.textfield.TextInputLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
